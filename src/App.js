@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import CounterDisplay from './components/CounterDisplay';
+import ResetButton from './components/ResetButton';
+import IncrementButton from './components/IncrementButton';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default function App() {
+  const [count, setCount] = useState(0)
 
-export default App;
+  function handleIncrement() {
+    setCount((previous) => previous + 1)
+  }
+
+  function handleReset() {
+    setCount(0)
+  }
+
+  return (
+    <main>
+      <CounterDisplay count={count} />
+      <IncrementButton increment={handleIncrement} /> &nbsp;
+      <ResetButton reset={handleReset} />
+    </main>
+  )
+}
